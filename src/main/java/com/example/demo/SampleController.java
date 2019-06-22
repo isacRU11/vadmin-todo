@@ -11,6 +11,6 @@ public class SampleController {
 
     @GetMapping("/")
     public String sample(){
-        return "hello spring boot";
+        return "nope";
     }
 }
