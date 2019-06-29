@@ -18,9 +18,9 @@
         </div>
         <br>
 
-        <form method="POST" action="/home">
+        <form method="POST" action="/todo">
             <div class="input-group mb-3">
-                <input class="form-control form-control-lg" th:name="todo" th:placeholder="todo入力" />
+                <input class="form-control form-control-lg" th:name="todo" required placeholder="todo入力" />
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-success">
                         <span>&thinsp;追加&thinsp;</span>

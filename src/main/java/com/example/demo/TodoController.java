@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class SampleController {
+public class TodoController {
 
     @Autowired
     private TodoListRepository todoRepo;
@@ -26,23 +26,23 @@ public class SampleController {
         return "login";
     }
 
-    @GetMapping({"/home", "/"})
+    @GetMapping({"/todo", "/"})
     public String sample(Model model){
         List<TodoList> tl = todoRepo.findAll();
 
         model.addAttribute("todolist", tl);
-        return "sample";
+        return "todo";
     }
 
-    @PostMapping("/home")
+    @PostMapping("/todo")
     public String createTodo(@RequestParam(required = false) String todo){
         this.todoService.insertRow(todo);
-        return "redirect:/home";
+        return "redirect:/todo";
     }
 
     @GetMapping("todo-{id}/delete")
     public String deleteTodo(@PathVariable Integer id){
         todoRepo.deleteById(id);
-        return "redirect:/home";
+        return "redirect:/todo";
     }
 }
