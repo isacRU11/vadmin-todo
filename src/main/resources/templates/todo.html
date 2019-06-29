@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 <th:block th:if="*{#lists.size(todolist)} == 0">
-                    <tr><td colspan="3">なし</td></tr>
+                    <tr><td colspan="3">none</td></tr>
                 </th:block>
                 <tr th:each="map, state : ${todolist}">
                     <td style="width: 5%" th:text="${state.count}"></td>
