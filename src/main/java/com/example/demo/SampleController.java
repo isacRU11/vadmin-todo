@@ -27,7 +27,7 @@ public class SampleController {
         List<TodoList> tl = todoRepo.findAll();
 
         model.addAttribute("todolist", tl);
-        return "/sample";
+        return "sample";
     }
 
     @PostMapping("/home")
