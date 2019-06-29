@@ -11,6 +11,6 @@ public class SampleController {
 
     @GetMapping("/")
     public String sample(){
-        return "final check";
+        return "yes";
     }
 }
