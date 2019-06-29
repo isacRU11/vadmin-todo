@@ -1,11 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorator="~{fragments/layout}">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>hello</h1>
+    <table class="table table-condensed table-hover save" id="data_table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>todo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="map : ${todolist}">
+                <td th:text="${map.id}"></td>
+                <td th:text="${map.todo}"></td>
+                <td>
+                    <button th:onclick="|window.location.href='todo-${map.id}/delete'|">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="POST" action="/home">
+
+        <input th:name="todo" type="text">
+        <input type="submit">
+    </form>
+
 </body>
 </html>

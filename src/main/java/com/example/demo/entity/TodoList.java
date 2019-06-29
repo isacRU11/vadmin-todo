@@ -19,8 +19,8 @@ public class TodoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 100)
     private String todo;
-    @Column(insertable = false, updatable = true)
-    private Boolean isDeleted;
-    
+    @Column
+    private Boolean isDeleted = false;
 }
