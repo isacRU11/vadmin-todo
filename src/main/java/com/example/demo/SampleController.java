@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.entity.TodoList;
@@ -21,6 +20,11 @@ public class SampleController {
     private TodoListRepository todoRepo;
     @Autowired
     private TodoService todoService;
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
     @GetMapping("/home")
     public String sample(Model model){
