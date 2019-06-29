@@ -26,7 +26,7 @@ public class SampleController {
         return "login";
     }
 
-    @GetMapping("/home")
+    @GetMapping({"/home", "/"})
     public String sample(Model model){
         List<TodoList> tl = todoRepo.findAll();
 

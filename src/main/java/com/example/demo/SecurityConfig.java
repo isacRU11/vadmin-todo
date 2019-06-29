@@ -78,16 +78,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.csrf().disable()
-			.authorizeRequests().antMatchers("/login").permitAll()
-			.anyRequest().authenticated()
-			.and()
-			.formLogin()
-			.loginPage("/login").permitAll();
+           .authorizeRequests()
+            .antMatchers("/resources/**", "/webjars/**","/css/**","/js/**","/img/**").permitAll()
+               .antMatchers("/login").permitAll()
+               .antMatchers("/**").hasAnyAuthority("ROLE_ADMIN","USER")
+               .anyRequest().authenticated()
+               .and()
+           .formLogin()
+               .loginPage("/login")
+               .defaultSuccessUrl("/home")
+               .failureUrl("/login?error")
+               .usernameParameter("username")
+               .passwordParameter("password")
+               .permitAll();
 			
 			//remember me configuration
 			http
-				.rememberMe()
-				.tokenValiditySeconds(10000000);
+				.rememberMe().tokenRepository(this.tokenRepository())
+				.tokenValiditySeconds(10000000).alwaysRemember(true);
 			
 			http
 				.logout()
