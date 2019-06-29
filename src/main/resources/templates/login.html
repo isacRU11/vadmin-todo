@@ -7,19 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css}" />
 </head>
 
 <body>
+
     <form method="POST" th:action="@{/login}" class="form-signin">
+        <div class="" role="alert">
+            <div th:if="${param.error}" class="alert alert-danger">
+                <span class="oi oi-circle-x"></span>
+                <span th:text="#{login.failed}"></span>
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                <span class="oi oi-circle-check"></span>&thinsp;
+                <span th:text="#{logout.success}"></span>
+            </div>
+        </div>
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <input name="username" type="text" class="form-control" placeholder="username" required />
-        <br>
         <input name="password" class="form-control" placeholder="password" type="password" required />
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" name="remember-me" id="remember-me" value="true" checked>
             <label class="custom-control-label" for="remember-me">remember me</label>
         </div>
-        <input class="btn btn-primary" type="submit" value="login">
+        <button class="btn btn-primary" type="submit">
+            <span class="oi oi-account-login"></span>
+            <span>&thinsp;Login</span>
+        </button>
     </form>
 </body>
 

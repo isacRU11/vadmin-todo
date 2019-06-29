@@ -8,22 +8,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TODO</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css}" />
 </head>
 
 <body>
     <div class="container">
         <br>
         <div class="text-right">
-            <a class="btn btn-secondary" href="logout">Logout</a>
+            <a class="btn btn-secondary" href="logout"><span class="oi oi-account-logout"></span>&thinsp;Logout</a>
         </div>
         <br>
 
         <form method="POST" action="/todo">
             <div class="input-group mb-3">
-                <input class="form-control form-control-lg" th:name="todo" required placeholder="todo入力" />
+                <input class="form-control" th:name="todo" required placeholder="please write your todo" />
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-success">
-                        <span>&thinsp;追加&thinsp;</span>
+                    <button type="submit" class="btn btn-outline-success">
+                        <span class="oi oi-plus"></span>&thinsp;add
                     </button>
                 </div>
             </div>
@@ -38,11 +39,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="map : ${todolist}">
-                    <td style="width: 5%" th:text="${map.id}"></td>
+                <th:block th:if="*{#lists.size(todolist)} == 0">
+                    <tr><td colspan="3">なし</td></tr>
+                </th:block>
+                <tr th:each="map, state : ${todolist}">
+                    <td style="width: 5%" th:text="${state.count}"></td>
                     <td th:text="${map.todo}"></td>
-                    <td style="width: 10%">
-                        <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">delete</button>
+                    <td style="width: 12%">
+                        <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">
+                            <span class="oi oi-trash"></span>
+                            <span class="pc-only">&thinsp;delete</span>
+                        </button>
                     </td>
                 </tr>
             </tbody>
