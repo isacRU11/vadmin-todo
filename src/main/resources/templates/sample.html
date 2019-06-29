@@ -6,34 +6,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>TODO</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
 <body>
-    <a href="logout">Logout</a>
-    <table class="table table-condensed table-hover save" id="data_table">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>todo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="map : ${todolist}">
-                <td th:text="${map.id}"></td>
-                <td th:text="${map.todo}"></td>
-                <td>
-                    <button th:onclick="|window.location.href='todo-${map.id}/delete'|">delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <br>
+        <div class="text-right">
+            <a class="btn btn-secondary" href="logout">Logout</a>
+        </div>
+        <br>
 
-    <form method="POST" action="/home">
-
-        <input th:name="todo" type="text">
-        <input type="submit">
-    </form>
+        <form method="POST" action="/home">
+            <div class="input-group mb-3">
+                <input class="form-control form-control-lg" th:name="todo" th:placeholder="todo入力" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">
+                        <span>&thinsp;追加&thinsp;</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>todo</th>
+                    <th>operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="map : ${todolist}">
+                    <td style="width: 5%" th:text="${map.id}"></td>
+                    <td th:text="${map.todo}"></td>
+                    <td style="width: 10%">
+                        <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
+
 </html>

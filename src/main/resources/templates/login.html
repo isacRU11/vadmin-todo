@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorator="~{fragments/layout}">
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
 </head>
 
 <body>
-    <form method="POST" th:action="@{/login}">
-        <div><input name="username" type="text" class="form-control" placeholder="ログインID" required /></div>
-        <div><input name="password" class="form-control" placeholder="パスワード" required /></div>
-        <div>
+    <form method="POST" th:action="@{/login}" class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <div><input name="username" type="text" class="form-control" placeholder="username" required /></div>
+        <div><input name="password" class="form-control" placeholder="password" required /></div>
+        <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" name="remember-me" id="remember-me" value="true" checked>
-            <label class="custom-control-label" for="remember-me">ログイン状態を保持する</label>
+            <label class="custom-control-label" for="remember-me">remember me</label>
         </div>
-        <input type="submit" value="login">
+        <input class="btn btn-primary" type="submit" value="login">
     </form>
 </body>
 
