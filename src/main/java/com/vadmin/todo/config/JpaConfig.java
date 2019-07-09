@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.vadmin.todo.config;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.example.demo.repository"})
+@EnableJpaRepositories(basePackages = {"com.vadmin.todo.repository"})
 public class JpaConfig {
 
     @Autowired private DataSource dataSource;
@@ -28,7 +28,7 @@ public class JpaConfig {
   
       LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
       factory.setJpaVendorAdapter(vendorAdapter);
-      factory.setPackagesToScan("com.example.demo.entity");
+      factory.setPackagesToScan("com.vadmin.todo.entity");
       factory.setDataSource(dataSource);
       factory.afterPropertiesSet();
   

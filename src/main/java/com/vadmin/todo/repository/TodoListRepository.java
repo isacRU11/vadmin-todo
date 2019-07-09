@@ -1,8 +1,8 @@
-package com.example.demo.repository;
+package com.vadmin.todo.repository;
 
 import java.util.List;
 
-import com.example.demo.entity.TodoList;
+import com.vadmin.todo.entity.TodoList;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.vadmin.todo.entity;
 
 import javax.persistence.*;
 

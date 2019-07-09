@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.vadmin.todo.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.example.demo.*")
+@ComponentScan("com.vadmin.todo.*")
 public class WebConfig implements WebMvcConfigurer {
 
     @Override

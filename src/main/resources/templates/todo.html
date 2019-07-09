@@ -24,7 +24,7 @@
                 <input class="form-control" th:name="todo" required placeholder="please write your todo" />
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-outline-success">
-                        <span class="oi oi-plus"></span>&thinsp;add
+                        <span class="oi oi-plus"></span>
                     </button>
                 </div>
             </div>
@@ -45,10 +45,9 @@
                 <tr th:each="map, state : ${todolist}">
                     <td style="width: 5%" th:text="${state.count}"></td>
                     <td th:text="${map.todo}"></td>
-                    <td style="width: 12%">
+                    <td style="width: 15%">
                         <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">
                             <span class="oi oi-trash"></span>
-                            <span class="pc-only">&thinsp;delete</span>
                         </button>
                     </td>
                 </tr>

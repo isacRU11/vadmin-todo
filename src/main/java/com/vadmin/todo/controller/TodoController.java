@@ -1,9 +1,10 @@
-package com.example.demo;
+package com.vadmin.todo.controller;
 
 import java.util.List;
 
-import com.example.demo.entity.TodoList;
-import com.example.demo.repository.TodoListRepository;
+import com.vadmin.todo.entity.TodoList;
+import com.vadmin.todo.repository.TodoListRepository;
+import com.vadmin.todo.service.TodoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

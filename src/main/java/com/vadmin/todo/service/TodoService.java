@@ -1,7 +1,7 @@
-package com.example.demo;
+package com.vadmin.todo.service;
 
-import com.example.demo.entity.TodoList;
-import com.example.demo.repository.TodoListRepository;
+import com.vadmin.todo.entity.TodoList;
+import com.vadmin.todo.repository.TodoListRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

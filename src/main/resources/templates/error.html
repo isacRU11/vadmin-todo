@@ -1,0 +1,23 @@
+<!-- エラー管理画面 -->
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{fragments/layout}">
+
+<head>
+    <title th:text="${exception.status}"></title>
+</head>
+
+<body>
+    <div layout:fragment="content" class="container text-center" th:switch="${exception.status}">
+        <h2>
+            <th:block th:case="400">無効なリクエストが投げられました</th:block>
+            <th:block th:case="403">不正アクセス</th:block>
+            <th:block th:case="404">ページが見つかりませんでした</th:block>
+            <th:block th:case="500">インターネットサーバーエラー</th:block>
+            <th:block th:case="502">ゲートウェイが無効</th:block>
+            <th:block th:case="503">サービスは利用できません</th:block>
+            <th:block th:case="*" th:text="${exception.error}"></th:block>
+        </h2>
+    </div>
+</body>
+
+</html>
