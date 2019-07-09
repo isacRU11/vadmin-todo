@@ -46,4 +46,10 @@ public class TodoController {
         todoRepo.deleteById(id);
         return "redirect:/todo";
     }
+
+    @GetMapping("/speech")
+    public String getSpeech() {
+        return "speech";
+    }
+    
 }

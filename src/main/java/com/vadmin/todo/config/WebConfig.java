@@ -17,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/todo").setViewName("todo");
+        registry.addViewController("/speech").setViewName("speech");
     }
 
     @Override
