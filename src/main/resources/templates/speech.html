@@ -8,49 +8,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>音声認識</title>
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/app.css}" />
+  <link rel="stylesheet" th:href="@{/js/app.js}" />
 </head>
 
 <body>
-  <div class="mx-auto" style="width: 200px; padding-top: 10%">
-    <button class="btn btn-success btn-lg" id="start-btn">start</button>
-    <button class="btn btn-danger btn-lg" id="stop-btn">stop</button>
-    <div id="result-div"></div>
+  <div class="form-signin">
+    <h3>Web Speech API</h3>
+    <button class="btn btn-success btn-lg" id="btn">音声認識開始</button>
+    <div id="content"></div>
   </div>
 
-  <script>
-    const startBtn = document.querySelector('#start-btn');
-    const stopBtn = document.querySelector('#stop-btn');
-    const resultDiv = document.querySelector('#result-div');
-
-    SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
-    let recognition = new SpeechRecognition();
-
-    recognition.lang = 'ja-JP';
-    recognition.interimResults = true;
-    recognition.continuous = true;
-
-    let finalTranscript = ''; // 確定した(黒の)認識結果
-
-    recognition.onresult = (event) => {
-      let interimTranscript = ''; // 暫定(灰色)の認識結果
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        let transcript = event.results[i][0].transcript;
-        if (event.results[i].isFinal) {
-          finalTranscript += transcript;
-        } else {
-          interimTranscript = transcript;
-        }
-      }
-      resultDiv.innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</i>';
-    }
-
-    startBtn.onclick = () => {
-      recognition.start();
-    }
-    stopBtn.onclick = () => {
-      recognition.stop();
-    }
-  </script>
+  <script src="app.js"></script>
 </body>
 
 </html>
