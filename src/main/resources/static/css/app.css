@@ -2,12 +2,6 @@ html,
 body {
   height: 70%;
 }
-.custom-control-label::before, 
-.custom-control-label::after {
-top: .3rem;
-width: 1.5rem;
-height: 1.5rem;
-}
 body {
   display: -ms-flexbox;
   display: -webkit-box;
