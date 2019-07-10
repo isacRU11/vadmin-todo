@@ -1,0 +1,60 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorator="~{fragments/layout}" lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TODO</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css}" />
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <div class="text-right">
+            <a class="btn btn-secondary" href="logout"><span class="oi oi-account-logout"></span>&thinsp;Logout</a>
+        </div>
+        <br>
+
+        <form method="POST" action="/todo">
+            <div class="input-group mb-3">
+                <input class="form-control" th:name="todo" required placeholder="please write your todo" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-success">
+                        <span class="oi oi-plus"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>todo</th>
+                    <th>operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:if="*{#lists.size(todolist)} == 0">
+                    <tr><td colspan="3">none</td></tr>
+                </th:block>
+                <tr th:each="map, state : ${todolist}">
+                    <td style="width: 5%" th:text="${state.count}"></td>
+                    <td th:text="${map.todo}"></td>
+                    <td style="width: 15%">
+                        <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">
+                            <span class="oi oi-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
