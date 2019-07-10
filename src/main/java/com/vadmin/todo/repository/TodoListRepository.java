@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TodoListRepository extends JpaRepository<TodoList, Integer>{
 
-    @Query("SELECT p FROM TodoList p WHERE p.isDeleted=FALSE")
+    @Query("SELECT p FROM TodoList p")
     public List<TodoList> findAll();
 }

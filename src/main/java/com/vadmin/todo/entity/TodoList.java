@@ -1,5 +1,7 @@
 package com.vadmin.todo.entity;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 import lombok.Getter;
@@ -22,5 +24,8 @@ public class TodoList {
     @Column(length = 100)
     private String todo;
     @Column
-    private Boolean isDeleted = false;
+    private Date deadLine;
+
+    @Transient
+    private String tempDeadLine;
 }
