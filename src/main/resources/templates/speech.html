@@ -1,53 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorator="~{fragments/layout}" lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" th:href="@{/webjars/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css}" />
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>音声認識</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
 <body>
-    <button class="btn btn-success"id="start-btn">start</button>
-    <button class="btn btn-danger" id="stop-btn">stop</button>
+  <div class="mx-auto" style="width: 200px; padding-top: 10%">
+    <button class="btn btn-success btn-lg" id="start-btn">start</button>
+    <button class="btn btn-danger btn-lg" id="stop-btn">stop</button>
     <div id="result-div"></div>
+  </div>
 
-    <script>
-        const startBtn = document.querySelector('#start-btn');
-        const stopBtn = document.querySelector('#stop-btn');
-        const resultDiv = document.querySelector('#result-div');
+  <script>
+    const startBtn = document.querySelector('#start-btn');
+    const stopBtn = document.querySelector('#stop-btn');
+    const resultDiv = document.querySelector('#result-div');
 
-        SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
-        let recognition = new SpeechRecognition();
+    SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+    let recognition = new SpeechRecognition();
 
-        recognition.lang = 'ja-JP';
-        recognition.interimResults = true;
-        recognition.continuous = true;
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = true;
+    recognition.continuous = true;
 
-        let finalTranscript = ''; // 確定した(黒の)認識結果
+    let finalTranscript = ''; // 確定した(黒の)認識結果
 
-        recognition.onresult = (event) => {
-            let interimTranscript = ''; // 暫定(灰色)の認識結果
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                let transcript = event.results[i][0].transcript;
-                if (event.results[i].isFinal) {
-                    finalTranscript += transcript;
-                } else {
-                    interimTranscript = transcript;
-                }
-            }
-            resultDiv.innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</i>';
+    recognition.onresult = (event) => {
+      let interimTranscript = ''; // 暫定(灰色)の認識結果
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        let transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+        } else {
+          interimTranscript = transcript;
         }
+      }
+      resultDiv.innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</i>';
+    }
 
-        startBtn.onclick = () => {
-            recognition.start();
-        }
-        stopBtn.onclick = () => {
-            recognition.stop();
-        }
-    </script>
+    startBtn.onclick = () => {
+      recognition.start();
+    }
+    stopBtn.onclick = () => {
+      recognition.stop();
+    }
+  </script>
 </body>
 
 </html>
