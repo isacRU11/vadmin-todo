@@ -1,6 +1,5 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorator="~{fragments/layout}" lang="ja">
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorator="~{fragments/layout}" lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -9,24 +8,25 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:dec
     <title>TODO</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/webjars/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
 </head>
 
 <body>
     <div class="container">
-        <br>
+        <!-- <br>
         <div class="text-right">
             <a class="btn btn-secondary" href="logout"><span class="oi oi-account-logout"></span>&thinsp;Logout</a>
         </div>
-        <br>
+        <br> -->
 
         <form method="POST" action="/todo">
             <div class="input-group mb-3">
-                <input id="todo" class="form-control" th:name="todo" required placeholder="please write your todo" />
+                <input id="todo" class="form-control" th:name="todo" required placeholder="todoの入力..." />
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-outline-success">
                         <span class="oi oi-plus"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-danger" id="btn">
+                    <button type="button" class="btn btn-outline-info" id="btn">
                         <span class="oi oi-microphone"></span>
                     </button>
                 </div>
@@ -36,18 +36,17 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:dec
         <table class="table table-condensed table-hover">
             <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>todo</th>
-                    <th>operation</th>
+                    <th>todo内容</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <th:block th:if="*{#lists.size(todolist)} == 0">
-                    <tr><td colspan="3">none</td></tr>
+                    <tr><td colspan="3">なし</td></tr>
                 </th:block>
                 <tr th:each="map, state : ${todolist}">
-                    <td style="width: 5%" th:text="${state.count}"></td>
-                    <td th:text="${map.todo}"></td>
+                    <td th:text="${map.todo}">
+                    </td>
                     <td style="width: 15%">
                         <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">
                             <span class="oi oi-trash"></span>
