@@ -8,36 +8,36 @@
     <title>TODO</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/webjars/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <!-- <link rel="stylesheet" th:href="@{/css/app.css}" /> -->
 </head>
 
 <body>
-    <div class="container">
-        <!-- <br>
-        <div class="text-right">
-            <a class="btn btn-secondary" href="logout"><span class="oi oi-account-logout"></span>&thinsp;Logout</a>
-        </div>
-        <br> -->
-
+    <h5 class="container">
+        <br>
         <form method="POST" action="/todo" th:object="${todoList}">
-            <div class="input-group mb-3">
-                <input id="todo" class="form-control" name="todo" required placeholder="todoの入力..." />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-success">
-                        <span class="oi oi-plus"></span>
-                    </button>
-                    <button type="button" class="btn btn-outline-info" id="btn">
-                        <span class="oi oi-microphone"></span>
-                    </button>
-                </div>
+
+            <div class="form-group">
+                <textarea autofocus placeholder="please speak or write your todo here" class="form-control" name="todo" id="todo" rows="3" required></textarea>
             </div>
-            <input class="form-control" type="text" onfocus="(this.type='datetime-local')" name="tempDeadLine" required placeholder="期限日時入力...">
+            <div class="form-group">
+                <input class="form-control" type="datetime-local" id="tempDeadLine" name="tempDeadLine" required>
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-outline-success btn-lg">
+                    <span class="oi oi-plus"></span>
+                </button>
+                <button type="button" class="btn btn-outline-info btn-lg" id="btn">
+                    <span class="oi oi-microphone"></span>
+                </button>
+            </div>
         </form>
         <br>
         <table class="table table-condensed table-hover">
             <thead>
                 <tr>
-                    <th>todo内容</th>
+                    <th>
+                        <h3>todo list</h3>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -51,7 +51,7 @@
                         <small th:text="|${#dates.format(map.deadLine, 'yyyy/MM/dd HH:mm')}まで|"></small>
                     </td>
                     <td style="width: 15%">
-                        <button class="btn btn-outline-danger" th:onclick="|window.location.href='todo-${map.id}/delete'|">
+                        <button class="btn btn-outline-danger btn-lg" th:onclick="|window.location.href='todo-${map.id}/delete'|">
                             <span class="oi oi-trash"></span>
                         </button>
                     </td>
